@@ -47,12 +47,7 @@ class OEmbedPatternRegexTestCase(unittest.TestCase):
 
 class OEmbedExtensionTestCase(unittest.TestCase):
     def setUp(self):
-        md_params = {
-            'extensions': [
-                'oembed',
-            ],
-        }
-        self.markdown = markdown.Markdown(**md_params)
+        self.markdown = markdown.Markdown(extensions=['oembed'])
 
 
 class IgnoredTestCase(OEmbedExtensionTestCase):
@@ -109,6 +104,44 @@ class YoutubeTestCase(OEmbedExtensionTestCase):
         """
         text = '![link](http://vimeo.com/52970271)'
         expected = '<iframe src="http://player.vimeo.com/video/52970271" width="1280" height="720" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
+        output = self.markdown.convert(text)
+        self.assertEqual(output, expected)
+
+
+class LimitedOEmbedExtensionTestCase(unittest.TestCase):
+    def setUp(self):
+        self.markdown = markdown.Markdown(
+            extensions=['oembed'],
+            extension_configs={
+                'oembed': {
+                    'allowed_endpoints': ['youtube',],
+                }
+            })
+
+    def test_youtube_link(self):
+        """
+        YouTube video link.
+        """
+        text = '![video](http://www.youtube.com/watch?v=zqnh_YJBvOI)'
+        expected = '<iframe width="459" height="344" src="http://www.youtube.com/embed/zqnh_YJBvOI?fs=1&feature=oembed" frameborder="0" allowfullscreen></iframe>'
+        output = self.markdown.convert(text)
+        self.assertEqual(output, expected)
+
+    def test_youtube_short_link(self):
+        """
+        Short format YouTube video link.
+        """
+        text = '![video](http://youtu.be/zqnh_YJBvOI)'
+        expected = '<iframe width="459" height="344" src="http://www.youtube.com/embed/zqnh_YJBvOI?fs=1&feature=oembed" frameborder="0" allowfullscreen></iframe>'
+        output = self.markdown.convert(text)
+        self.assertEqual(output, expected)
+
+    def test_vimeio_link(self):
+        """
+        Vimeo video link.
+        """
+        text = '![link](http://vimeo.com/52970271)'
+        expected = '<p><img alt="link" src="http://vimeo.com/52970271" /></p>'
         output = self.markdown.convert(text)
         self.assertEqual(output, expected)
 

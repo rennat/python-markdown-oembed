@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 from markdown.inlinepatterns import Pattern
+import oembed
 
 
 LOG = logging.getLogger(__name__)
@@ -18,6 +19,9 @@ class OEmbedLinkPattern(Pattern):
 
     def handleMatch(self, match):
         url = match.group(3).strip()
-        response = self.consumer.embed(url)
+        try:
+            response = self.consumer.embed(url)
+        except oembed.OEmbedNoEndpoint:
+            return None
         placeholder = self.markdown.htmlStash.store(response['html'])
         return placeholder
