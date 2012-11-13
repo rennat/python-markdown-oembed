@@ -14,7 +14,6 @@ setup(
     version=VERSION,
     description="Markdown extension to allow media embedding using the oEmbed "
                 "standard.",
-    long_description=open('README.markdown').read(),
     author='Tanner Netterville',
     author_email='tannern@gmail.com',
     url='https://github.com/rennat/python-markdown-oembed',
