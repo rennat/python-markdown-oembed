@@ -19,3 +19,7 @@ Markdown extension to allow media embedding using the oEmbed standard.
 - [Markdown](http://daringfireball.net/projects/markdown/)
 - [oEmbed](http://www.oembed.com/)
 - [python-oembed](https://github.com/abarmat/python-oembed)
+
+## License
+
+A Public Domain work. Do as you wish.

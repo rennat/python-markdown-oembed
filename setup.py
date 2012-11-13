@@ -6,24 +6,24 @@ except ImportError:
     from distutils.core import setup
 
 
-VERSION = '0.1'
+VERSION = '0.1.1a1'
 
 
 setup(
     name='python-markdown-oembed',
     version=VERSION,
-    description="",
+    description="Markdown extension to allow media embedding using the oEmbed "
+                "standard.",
     long_description=open('README.markdown').read(),
     author='Tanner Netterville',
     author_email='tannern@gmail.com',
     url='https://github.com/rennat/python-markdown-oembed',
-    license='MIT',
+    license='Public Domain',
     classifiers=(
         "Development Status :: 4 - Beta",
-        "License :: OSI Approved :: MIT License",
+        "License :: Public Domain",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.5",
-        "Programming Language :: Python :: 2.6",
+        "Programming Language :: Python :: 2.7",
     ),
     keywords='markdown oembed',
 
