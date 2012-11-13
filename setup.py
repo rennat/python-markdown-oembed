@@ -6,7 +6,7 @@ except ImportError:
     from distutils.core import setup
 
 
-VERSION = '0.0b'
+VERSION = '0.1'
 
 
 setup(
@@ -16,7 +16,7 @@ setup(
     long_description=open('README.markdown').read(),
     author='Tanner Netterville',
     author_email='tannern@gmail.com',
-    url='http://tannern.com',
+    url='https://github.com/rennat/python-markdown-oembed',
     license='MIT',
     classifiers=(
         "Development Status :: 4 - Beta",
