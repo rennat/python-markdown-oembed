@@ -18,10 +18,17 @@ class OEmbedLinkPattern(Pattern):
         self.consumer = oembed_consumer
 
     def handleMatch(self, match):
+        html = self.get_oembed_html_for_match(match)
+        if html is None:
+            return None
+        placeholder = self.markdown.htmlStash.store(html)
+        return placeholder
+
+    def get_oembed_html_for_match(self, match):
         url = match.group(3).strip()
         try:
             response = self.consumer.embed(url)
         except oembed.OEmbedNoEndpoint:
             return None
-        placeholder = self.markdown.htmlStash.store(response['html'])
-        return placeholder
+        else:
+            return response['html']
