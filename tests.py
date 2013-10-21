@@ -98,7 +98,7 @@ class YoutubeTestCase(OEmbedExtensionTestCase):
         output = self.markdown.convert(text)
         self.assertEqual(output, expected)
 
-    def test_vimeio_link(self):
+    def test_vimeo_link(self):
         """
         Vimeo video link.
         """
@@ -136,7 +136,7 @@ class LimitedOEmbedExtensionTestCase(unittest.TestCase):
         output = self.markdown.convert(text)
         self.assertEqual(output, expected)
 
-    def test_vimeio_link(self):
+    def test_vimeo_link(self):
         """
         Vimeo video link.
         """
@@ -145,3 +145,6 @@ class LimitedOEmbedExtensionTestCase(unittest.TestCase):
         output = self.markdown.convert(text)
         self.assertEqual(output, expected)
 
+
+if __name__ == "__main__":
+    unittest.main()
