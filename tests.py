@@ -2,6 +2,7 @@
 import re
 import unittest
 import markdown
+from mock import patch
 from mdx_oembed.extension import OEMBED_LINK_RE
 
 
@@ -48,6 +49,12 @@ class OEmbedPatternRegexTestCase(unittest.TestCase):
 class OEmbedExtensionTestCase(unittest.TestCase):
     def setUp(self):
         self.markdown = markdown.Markdown(extensions=['oembed'])
+
+    def assert_convert(self, text, expected):
+        with patch('oembed.OEmbedEndpoint') as MockOEmbedEndpoint:
+            MockOEmbedEndpoint.get.return_value = expected
+            output = self.markdown.convert(text)
+        self.assertEqual(output, expected)
 
 
 class IgnoredTestCase(OEmbedExtensionTestCase):
@@ -133,8 +140,7 @@ class LimitedOEmbedExtensionTestCase(unittest.TestCase):
         """
         text = '![video](http://youtu.be/zqnh_YJBvOI)'
         expected = '<iframe width="459" height="344" src="http://www.youtube.com/embed/zqnh_YJBvOI?fs=1&feature=oembed" frameborder="0" allowfullscreen></iframe>'
-        output = self.markdown.convert(text)
-        self.assertEqual(output, expected)
+        self.assert_convert(text, expected)
 
     def test_vimeo_link(self):
         """
@@ -142,8 +148,7 @@ class LimitedOEmbedExtensionTestCase(unittest.TestCase):
         """
         text = '![link](http://vimeo.com/52970271)'
         expected = '<p><img alt="link" src="http://vimeo.com/52970271" /></p>'
-        output = self.markdown.convert(text)
-        self.assertEqual(output, expected)
+        self.assert_convert(text, expected)
 
 
 if __name__ == "__main__":
