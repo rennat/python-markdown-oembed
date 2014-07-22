@@ -7,7 +7,7 @@ import oembed
 LOG = logging.getLogger(__name__)
 
 
-OEMBED_LINK_RE = r'\!\[([^\]]*)\]\((https?://[^\)]*)' \
+OEMBED_LINK_RE = r'\!\[([^\]]*)\]\(((?:https?:)?//[^\)]*)' \
                  r'(?<!png)(?<!jpg)(?<!jpeg)(?<!gif)\)'
 
 

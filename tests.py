@@ -36,12 +36,27 @@ class OEmbedPatternRegexTestCase(unittest.TestCase):
         self.assertIsNone(match)
 
     def test_find_youtube_link(self):
-        text = '![video](http://www.youtube.com/watch?v=zqnh_YJBvOI)'
+        text = '![video](http://www.youtube.com/watch?v=7XzdZ4KcI8Y)'
         match = self.re.match(text)
         self.assertIsNotNone(match)
 
     def test_find_youtube_short_link(self):
-        text = '![video](http://youtu.be/zqnh_YJBvOI)'
+        text = '![video](http://youtu.be/7XzdZ4KcI8Y)'
+        match = self.re.match(text)
+        self.assertIsNotNone(match)
+
+    def test_find_youtube_http(self):
+        text = '![video](http://youtu.be/7XzdZ4KcI8Y)'
+        match = self.re.match(text)
+        self.assertIsNotNone(match)
+
+    def test_find_youtube_https(self):
+        text = '![video](https://youtu.be/7XzdZ4KcI8Y)'
+        match = self.re.match(text)
+        self.assertIsNotNone(match)
+
+    def test_find_youtube_auto(self):
+        text = '![video](//youtu.be/7XzdZ4KcI8Y)'
         match = self.re.match(text)
         self.assertIsNotNone(match)
 
@@ -82,6 +97,24 @@ class IgnoredTestCase(OEmbedExtensionTestCase):
         self.assertEqual(output, expected)
 
 
+class ProtocolVarietyTestCase(OEmbedExtensionTestCase):
+
+    def test_http(self):
+        text = '![video](http://www.youtube.com/watch?v=7XzdZ4KcI8Y)'
+        output = self.markdown.convert(text)
+        self.assertIn('<iframe', output)
+
+    def test_https(self):
+        text = '![video](https://www.youtube.com/watch?v=7XzdZ4KcI8Y)'
+        output = self.markdown.convert(text)
+        self.assertIn('<iframe', output)
+
+    def test_auto(self):
+        text = '![video](//www.youtube.com/watch?v=7XzdZ4KcI8Y)'
+        output = self.markdown.convert(text)
+        self.assertIn('<iframe', output)
+
+
 class YoutubeTestCase(OEmbedExtensionTestCase):
     """
     The OEmbedExtension should handle embedding for these cases.
@@ -91,31 +124,31 @@ class YoutubeTestCase(OEmbedExtensionTestCase):
         """
         YouTube video link.
         """
-        text = '![video](http://www.youtube.com/watch?v=zqnh_YJBvOI)'
-        expected = '<iframe width="459" height="344" src="http://www.youtube.com/embed/zqnh_YJBvOI?fs=1&feature=oembed" frameborder="0" allowfullscreen></iframe>'
+        text = '![video](http://www.youtube.com/watch?v=7XzdZ4KcI8Y)'
         output = self.markdown.convert(text)
-        self.assertEqual(output, expected)
+        self.assertIn('<iframe', output)
 
     def test_youtube_short_link(self):
         """
         Short format YouTube video link.
         """
-        text = '![video](http://youtu.be/zqnh_YJBvOI)'
-        expected = '<iframe width="459" height="344" src="http://www.youtube.com/embed/zqnh_YJBvOI?fs=1&feature=oembed" frameborder="0" allowfullscreen></iframe>'
+        text = '![video](http://youtu.be/7XzdZ4KcI8Y)'
         output = self.markdown.convert(text)
-        self.assertEqual(output, expected)
+        self.assertIn('<iframe', output)
+
+
+class VimeoTestCase(OEmbedExtensionTestCase):
 
     def test_vimeo_link(self):
         """
         Vimeo video link.
         """
         text = '![link](http://vimeo.com/52970271)'
-        expected = '<iframe src="http://player.vimeo.com/video/52970271" width="1280" height="720" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
         output = self.markdown.convert(text)
-        self.assertEqual(output, expected)
+        self.assertIn('<iframe', output)
 
 
-class LimitedOEmbedExtensionTestCase(unittest.TestCase):
+class LimitedOEmbedExtensionTestCase(OEmbedExtensionTestCase):
     def setUp(self):
         self.markdown = markdown.Markdown(
             extensions=['oembed'],
@@ -129,26 +162,17 @@ class LimitedOEmbedExtensionTestCase(unittest.TestCase):
         """
         YouTube video link.
         """
-        text = '![video](http://www.youtube.com/watch?v=zqnh_YJBvOI)'
-        expected = '<iframe width="459" height="344" src="http://www.youtube.com/embed/zqnh_YJBvOI?fs=1&feature=oembed" frameborder="0" allowfullscreen></iframe>'
+        text = '![video](http://www.youtube.com/watch?v=7XzdZ4KcI8Y)'
         output = self.markdown.convert(text)
-        self.assertEqual(output, expected)
-
-    def test_youtube_short_link(self):
-        """
-        Short format YouTube video link.
-        """
-        text = '![video](http://youtu.be/zqnh_YJBvOI)'
-        expected = '<iframe width="459" height="344" src="http://www.youtube.com/embed/zqnh_YJBvOI?fs=1&feature=oembed" frameborder="0" allowfullscreen></iframe>'
-        self.assert_convert(text, expected)
+        self.assertIn('<iframe', output)
 
     def test_vimeo_link(self):
         """
         Vimeo video link.
         """
         text = '![link](http://vimeo.com/52970271)'
-        expected = '<p><img alt="link" src="http://vimeo.com/52970271" /></p>'
-        self.assert_convert(text, expected)
+        output = self.markdown.convert(text)
+        self.assertNotIn('<iframe', output)
 
 
 if __name__ == "__main__":
