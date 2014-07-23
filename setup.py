@@ -4,17 +4,18 @@ try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
-import mdx_oembed
 
 
-with open('README.markdown', 'r') as readme:
-    LONG_DESCRIPTION = readme.read()
-VERSION = mdx_oembed.VERSION
+try:
+    with open('README.markdown', 'r') as readme:
+        LONG_DESCRIPTION = readme.read()
+except Exception:
+    LONG_DESCRIPTION = None
 
 
 setup(
     name='python-markdown-oembed',
-    version=VERSION,
+    version='0.1.4',
     description="Markdown extension to allow media embedding using the oEmbed "
                 "standard.",
     long_description=LONG_DESCRIPTION,
