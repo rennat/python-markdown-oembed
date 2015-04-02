@@ -10,13 +10,15 @@ AVAILABLE_ENDPOINTS = ENDPOINTS.keys()
 
 class OEmbedExtension(Extension):
 
-    config = {
-        'allowed_endpoints': [
-            AVAILABLE_ENDPOINTS,
-            "A list of oEmbed endpoints to allow. Possible values are "
-            "{}.".format(', '.join(AVAILABLE_ENDPOINTS)),
-        ],
-    }
+    def __init__(self, **kwargs):
+        self.config = {
+            'allowed_endpoints': [
+                AVAILABLE_ENDPOINTS,
+                "A list of oEmbed endpoints to allow. Possible values are "
+                "{}.".format(', '.join(AVAILABLE_ENDPOINTS)),
+            ],
+        }
+        super(OEmbedExtension, self).__init__(**kwargs)
 
     def extendMarkdown(self, md, md_globals):
         self.oembed_consumer = self.prepare_oembed_consumer()
