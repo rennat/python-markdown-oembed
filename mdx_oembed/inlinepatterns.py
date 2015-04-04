@@ -21,8 +21,10 @@ class OEmbedLinkPattern(Pattern):
         html = self.get_oembed_html_for_match(match)
         if html is None:
             return None
-        placeholder = self.markdown.htmlStash.store(html, True)
-        return placeholder
+        else:
+            html = "<div class=\"oembed\">%s</div>" % html
+            placeholder = self.markdown.htmlStash.store(html, True)
+            return placeholder
 
     def get_oembed_html_for_match(self, match):
         url = match.group(3).strip()
