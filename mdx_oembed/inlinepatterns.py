@@ -22,7 +22,7 @@ class OEmbedLinkPattern(Pattern):
         if html is None:
             return None
         else:
-            html = "<div class=\"oembed\">%s</div>" % html
+            html = "<figure class=\"oembed\">%s</figure>" % html
             placeholder = self.markdown.htmlStash.store(html, True)
             return placeholder
 
