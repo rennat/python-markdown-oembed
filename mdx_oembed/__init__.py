@@ -2,7 +2,7 @@
 from mdx_oembed.extension import OEmbedExtension
 
 
-VERSION = '0.1.8'
+VERSION = '0.1.9'
 
 
 def makeExtension(**kwargs):
