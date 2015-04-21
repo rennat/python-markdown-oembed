@@ -18,4 +18,4 @@ DEFAULT_ENDPOINTS = [
     oembed.OEmbedEndpoint('http://vimeo.com/api/oembed.json', [
         'https?://vimeo.com/*',
     ]),
-}
+]
