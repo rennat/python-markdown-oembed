@@ -40,5 +40,12 @@ setup(
     ],
 
     test_suite='nose.collector',
-    tests_require=['WebTest >= 1.2', 'BeautifulSoup', 'pytidylib', 'poster']
+    tests_require=[
+        'nose',
+        'mock',
+        'WebTest >= 1.2',
+        'BeautifulSoup',
+        'pytidylib',
+        'poster'
+    ]
 )
