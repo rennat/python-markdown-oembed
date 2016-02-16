@@ -2,15 +2,20 @@
 import oembed
 
 
-ENDPOINTS = {
-    'youtube': oembed.OEmbedEndpoint('http://www.youtube.com/oembed', [
+DEFAULT_ENDPOINTS = [
+    # Youtube
+    oembed.OEmbedEndpoint('http://www.youtube.com/oembed', [
         'https?://(*.)?youtube.com/*',
         'https?://youtu.be/*',
     ]),
-    'flickr': oembed.OEmbedEndpoint('http://www.flickr.com/services/oembed/', [
+
+    # Flickr
+    oembed.OEmbedEndpoint('http://www.flickr.com/services/oembed/', [
         'https?://*.flickr.com/*',
     ]),
-    'vimeo': oembed.OEmbedEndpoint('http://vimeo.com/api/oembed.json', [
+
+    # Vimeo
+    oembed.OEmbedEndpoint('http://vimeo.com/api/oembed.json', [
         'https?://vimeo.com/*',
     ]),
-}
+]

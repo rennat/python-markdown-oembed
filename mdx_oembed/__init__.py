@@ -2,10 +2,8 @@
 from mdx_oembed.extension import OEmbedExtension
 
 
-VERSION = '0.1.4'
+VERSION = '0.1.9'
 
 
-def makeExtension(configs=None):
-    if isinstance(configs, list):
-        configs = dict(configs)
-    return OEmbedExtension(configs=configs)
+def makeExtension(**kwargs):
+    return OEmbedExtension(**kwargs)
