@@ -1,5 +1,8 @@
 .DS_Store
 .idea
-dist
+/dist
+/.eggs
+/venv
 *.pyc
+*.egg
 *.egg-info

@@ -1,5 +1,7 @@
 # Python Markdown oEmbed
 
+[![Build Status](https://travis-ci.org/rennat/python-markdown-oembed.svg?branch=master)](https://travis-ci.org/rennat/python-markdown-oembed)
+
 Markdown extension to allow media embedding using the oEmbed standard.
 
 ## Installation
@@ -23,3 +25,13 @@ Markdown extension to allow media embedding using the oEmbed standard.
 ## License
 
 A Public Domain work. Do as you wish.
+
+## Changelog
+
+### 0.2.0
+
+- backwards incompatible changes
+    - allows arbitrary endpoints ([commit](https://github.com/Wenzil/python-markdown-oembed/commit/1e89de9db5e63677e071c36503e2499bbe0792da))
+    - works with modern Markdown (>=2.6)
+    - dropped support for python 2.6
+- added support python 3.x
