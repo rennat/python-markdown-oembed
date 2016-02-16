@@ -15,7 +15,7 @@ except Exception:
 
 setup(
     name='python-markdown-oembed',
-    version='0.1.9',
+    version='0.2.0',
     description="Markdown extension to allow media embedding using the oEmbed "
                 "standard.",
     long_description=LONG_DESCRIPTION,
@@ -42,10 +42,6 @@ setup(
     test_suite='nose.collector',
     tests_require=[
         'nose',
-        'mock',
-        'WebTest >= 1.2',
-        'BeautifulSoup',
-        'pytidylib',
-        'poster'
+        'mock'
     ]
 )
