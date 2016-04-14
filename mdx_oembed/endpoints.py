@@ -8,7 +8,7 @@ YOUTUBE = oembed.OEmbedEndpoint('http://www.youtube.com/oembed', [
 
 SLIDESHARE = oembed.OEmbedEndpoint('http://www.slideshare.net/api/oembed/2', [
     'http://www.slideshare.net/*/*',
-    'http://fr.slideshare.net/*/*,
+    'http://fr.slideshare.net/*/*',
     'http://de.slideshare.net/*/*',
     'http://es.slideshare.net/*/*',
     'http://pt.slideshare.net/*/*',
