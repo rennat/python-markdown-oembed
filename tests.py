@@ -150,6 +150,16 @@ class VimeoTestCase(OEmbedExtensionTestCase):
         output = self.markdown.convert(text)
         self.assertIn('<iframe', output)
 
+class SlideshareTestCase(OEmbedExtensionTestCase):
+
+    def test_slideshare_link(self):
+        """
+        Slideshare Presentation link.
+        """
+        text = '![slides](http://www.slideshare.net/anantshri/career-in-information-security)'
+        output = self.markdown.convert(text)
+        self.assertIn('<iframe', output)
+
 
 class LimitedOEmbedExtensionTestCase(OEmbedExtensionTestCase):
     def setUp(self):
