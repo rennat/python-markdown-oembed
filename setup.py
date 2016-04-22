@@ -15,7 +15,7 @@ except Exception:
 
 setup(
     name='python-markdown-oembed',
-    version='0.2.0',
+    version='0.2.1',
     description="Markdown extension to allow media embedding using the oEmbed "
                 "standard.",
     long_description=LONG_DESCRIPTION,
@@ -28,6 +28,10 @@ setup(
         "License :: Public Domain",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
     ),
     keywords='markdown oembed',
 

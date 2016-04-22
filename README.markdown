@@ -28,6 +28,10 @@ A Public Domain work. Do as you wish.
 
 ## Changelog
 
+### 0.2.1
+
+- add Slideshare endpoint (thanks to [anantshri](https://github.com/anantshri))
+
 ### 0.2.0
 
 - backwards incompatible changes
